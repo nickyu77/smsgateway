@@ -15,7 +15,6 @@ curl -s -X POST \
 
 For remote
 ```
-POST
 curl -s -X POST \
   https://gentle-citadel-54100.herokuapp.com/message \
   -H "content-type: application/json" \
