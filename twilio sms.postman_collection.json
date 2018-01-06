@@ -1,0 +1,40 @@
+{
+	"info": {
+		"name": "twilio sms",
+		"_postman_id": "3fb22ec7-085a-242b-922f-85b767bc704e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "twillio_api_gateway",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message\": \"hello\",\n    \"from\": \"+18329812858\",\n    \"to\": \"+18052083159\"\n}"
+				},
+				"url": {
+					"raw": "https://gentle-citadel-54100.herokuapp.com/message",
+					"protocol": "https",
+					"host": [
+						"gentle-citadel-54100",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"message"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
