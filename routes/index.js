@@ -11,9 +11,6 @@ axios.defaults.baseURL = 'https://api.twilio.com/2010-04-01/Accounts/AC62f197d2d
 axios.defaults.headers['authorization'] = 'Basic '+ token;
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
-//var accountSid = 'AC62f197d2d731c436c62270c999bfdc9f'; // Your Account SID from www.twilio.com/console
-//var authToken = 'QUM2MmYxOTdkMmQ3MzFjNDM2YzYyMjcwYzk5OWJmZGM5ZjplYmVjZmFjNzU1NWQzNDhiMWY0Mjk4OTA1MTgzMjljNw==';   // Your Auth Token from www.twilio.com/console
-
 var accountSid;
 var authToken;
 
