@@ -7,6 +7,7 @@ const axios = require('axios').create({});
 
 var accountSid;
 var authToken;
+var ticketNumber;
 
 var twilio = require('twilio');
 //var client = new twilio(accountSid, authToken);
@@ -14,9 +15,9 @@ var twilio = require('twilio');
 
 //Get message from Desktop
 
-axios.defaults.baseURL = 'https://dpt.theismailiusa.org/api/v2/tickets/2269/messages';
+//axios.defaults.baseURL = 'https://dpt.theismailiusa.org/api/v2/tickets/2269/messages';
 
-axios.defaults.headers['authorization'] = 'key 1:N7MJ53GA2TNSYS4GHDPZ88YAS';
+//axios.defaults.headers['Authorization'] = 'key 1:N7MJ53GA2TNSYS4GHDPZ88YAS';
 axios.defaults.headers['Content-Type'] = 'application/json';
 
 /* GET home page. */
@@ -30,13 +31,19 @@ router.post('/message', function(req, res, next) {
   let toMobile = req.body.to || '+18052083159';
   accountSid = req.body.account_sid;
   authToken = req.body.auth_token;
+  ticketNumber = req.body.ticket_number;
+  authorization = req.header.authorization;
   //client = new twilio(accountSid, authToken);
+  axios.defaults.headers['Authorization'] = authorization;
   
   console.log('fromMobile:',fromMobile);
   console.log('toMobile:',toMobile);
   console.log('message:',message);
   
-  axios.get()
+  console.log('ticketNumber:',ticketNumber);
+  console.log('authorization:',authorization);
+  
+  axios.get('https://dpt.theismailiusa.org/api/v2/tickets/' + ticketNumber + '/messages')
   .then(function(response){
     console.log(response.data); // ex.: { user: 'Your User'}
     console.log(response.status); // ex.: 200
