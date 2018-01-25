@@ -18,6 +18,14 @@ var twilio = require('twilio');
 //var client = new twilio(accountSid, authToken);
 var client;
 
+//Get message from Desktop
+const desktopClient = require('axios').create({});
+
+desktopClient.defaults.baseURL = 'https://dpt.theismailiusa.org/api/v2/tickets/2269/messages';
+
+desktopClient.defaults.headers['authorization'] = 'key 1:N7MJ53GA2TNSYS4GHDPZ88YAS';
+desktopClient.defaults.headers['Content-Type'] = 'application/json';
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json(`Twilio Message API Gateway`);
@@ -34,6 +42,13 @@ router.post('/message', function(req, res, next) {
   console.log('fromMobile:',fromMobile);
   console.log('toMobile:',toMobile);
   console.log('message:',message);
+  
+  desktopClient.get()
+  .then(function(response){
+    console.log(response.data); // ex.: { user: 'Your User'}
+    console.log(response.status); // ex.: 200
+  });
+  
 
   axios.post('Messages.json',
     querystring.stringify({From: fromMobile, To: toMobile, Body: message }))
