@@ -32,7 +32,7 @@ router.post('/message', function(req, res, next) {
   accountSid = req.body.account_sid;
   authToken = req.body.auth_token;
   ticketNumber = req.body.ticket_number;
-  authorization = req.header.authorization;
+  authorization = req.body.authorization;
   //client = new twilio(accountSid, authToken);
   axios.defaults.headers['Authorization'] = authorization;
   
@@ -47,23 +47,24 @@ router.post('/message', function(req, res, next) {
   .then(function(response){
     console.log(response.data); // ex.: { user: 'Your User'}
     console.log(response.status); // ex.: 200
+     axios.defaults.baseURL = 'https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/';
+			axios.defaults.headers['authorization'] = 'Basic '+ authToken;
+			axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+		  
+		
+		  axios.post('Messages.json',
+		    querystring.stringify({From: fromMobile, To: toMobile, Body: message }))
+		  .then(result => {
+		    res.json( result.data);
+		  }).catch(e => {
+		    console.log(e)
+		    next();
+		  });
   }).catch(e => {
     console.log(e)
     next();
   });
   
-  axios.defaults.baseURL = 'https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/';
-	axios.defaults.headers['authorization'] = 'Basic '+ authToken;
-	axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-  
-
-  axios.post('Messages.json',
-    querystring.stringify({From: fromMobile, To: toMobile, Body: message }))
-  .then(result => {
-    res.json( result.data);
-  }).catch(e => {
-    console.log(e)
-    next();
-  })
+ 
 });
 module.exports = router;
