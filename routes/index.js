@@ -36,7 +36,7 @@ router.post('/message', function(req, res, next) {
   console.log('toMobile:',toMobile);
   console.log('message:',message);
   
-  axios.get()
+  axios.get('https://dpt.theismailiusa.org/api/v2/tickets/2269/messages')
   .then(function(response){
     console.log(response.data); // ex.: { user: 'Your User'}
     console.log(response.status); // ex.: 200
