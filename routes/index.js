@@ -32,7 +32,7 @@ router.post('/message', function(req, res, next) {
   accountSid = req.body.account_sid;
   authToken = req.body.auth_token;
   ticketNumber = req.body.ticket_number;
-  authorization = req.header.authorization;
+  authorization = req.body.authorization;
   //client = new twilio(accountSid, authToken);
   axios.defaults.headers['Authorization'] = authorization;
   
